@@ -13,8 +13,23 @@
             <p class="text">Never use an insecure password again</p>
 
             <button class="btn-gen">Generate passwords</button>
-            <input class="input-pw-len" min="6" max="15" value="15" placeholder="Length" type="number">
-            
+
+            <div class="modifiers">
+                <div class="pw-len">
+                    <input id="input-pw-len" min="6" max="15" placeholder="Length" type="range">
+                    <label for="input-pw-len">Password Length: <span id="span-pw-len"></span></label>
+                </div>
+                
+                <div class="symbols">
+                    <input id="input-symbols" type="checkbox" checked>
+                    <label for="input-symbols">Symbols</label>
+                </div>
+                
+                <div class="Numbers">
+                    <input id="input-numbers" type="checkbox" checked>
+                    <label for="input-numbers">Numbers</label>
+                </div>
+            </div> 
         </div>
         <hr>
         <div class="passwords">

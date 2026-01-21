@@ -57,22 +57,16 @@ body {
     }
 }
 
-.input-pw-len {
-    background-color: unset;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 4px 8px;
-    width: 48px;
-    border: 2px solid #10B981;
-    border-radius: 5px;
-    transition: 0.25s 0s ease;
-    outline: none;
+.modifiers {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
-    &:hover,
-    &:focus {
-        border: 2px solid #345685;
-    }
+}
+
+label {
+    color: #ffffff;
 }
 
 hr {

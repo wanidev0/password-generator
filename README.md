@@ -6,5 +6,5 @@ A project for Scrimba which consists of a WebApp to generate passwords randomly
 - [x] Each password should be 15 characters long
 ## Stretch Goals:
 - [x] Ability to set the password length
-- [ ] Add "copy-on-click"
-- [ ] Toggle "symbols" and "numbers" on/off
+- [x] Add "copy-on-click"
+- [x] Toggle "symbols" and "numbers" on/off

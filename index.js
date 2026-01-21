@@ -1,50 +1,92 @@
-const btnGenEl = document.querySelector('.btn-gen');
-const firstPasswordEl = document.querySelector('.pw1');
-const secondPasswordEl = document.querySelector('.pw2');
-const inputPasswordLengthEl = document.querySelector('.input-pw-len');
-const containerPasswordsEl = document.querySelector('.passwords');
+const btnGen = document.querySelector('.btn-gen');
+const firstPw = document.querySelector('.pw1');
+const secondPw = document.querySelector('.pw2');
+const inputPwLen = document.querySelector('#input-pw-len');
+const spanPwLen = document.querySelector('#span-pw-len');
+const inputSymbols = document.querySelector('#input-symbols');
+const inputNumbers = document.querySelector('#input-numbers');
+const containerPw = document.querySelector('.passwords');
 
 const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?","/"];
 
-let PASSWORD_LENGTH = 15;
+let pwLen = Number(inputPwLen.value);
+spanPwLen.textContent = pwLen;
 
-const getRandomPassword = () => {
-    const getRandomNumber = () => Math.floor(Math.random() * characters.length);
+let withSymbols = inputSymbols.checked;
+let withNumbers = inputNumbers.checked;
 
-    let randomPassword = "";
+const getRandomPw = () => {
+    const getRandomNum = () => Math.floor(Math.random() * characters.length);
 
-    for (let i = 0; i < PASSWORD_LENGTH; i++) {
-        randomPassword += characters[getRandomNumber()];
+    let randomPw = "";
+    const isNum = (char) => char >= 0 && char <= 9;
+    const isAlpha = (char) => (char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z');
+
+
+    if (withSymbols && withNumbers) {
+        for (let i = 0; i < pwLen; i++) {
+            randomPw += characters[getRandomNum()];
+        }
+    } else if (!withSymbols && withNumbers) {
+        let randomChar = ''
+        const isNumber = randomChar >= 0 && randomChar <= 9;
+        for (let i = 0; i < pwLen; i++) {
+            randomChar = characters[getRandomNum()];
+            if (isNum(randomChar) || isAlpha(randomChar)) {
+                randomPw += randomChar;
+            } else {
+                i--;   
+            }
+        }
+    } else if (withSymbols && !withNumbers) {
+        let randomChar = '';
+        for (let i = 0; i < pwLen; i++) {
+            randomChar = characters[getRandomNum()];
+            if (!isNum(randomChar)) {
+                randomPw += randomChar;
+            } else {
+                i--;
+            }
+        }
+    } else {
+        let randomChar = ''
+        const isNumber = randomChar >= 0 && randomChar <= 9;
+        for (let i = 0; i < pwLen; i++) {
+            randomChar = characters[getRandomNum()];
+            if (isAlpha(randomChar)) {
+                randomPw += randomChar;
+            } else {
+                i--;   
+            }
+        }
     }
-    return randomPassword;
+
+    return randomPw;
 }
 
-btnGenEl.addEventListener('click', () => {
-    firstPasswordEl.textContent = getRandomPassword();
-    secondPasswordEl.textContent = getRandomPassword();
-
+btnGen.addEventListener('click', () => {
+    firstPw.textContent = getRandomPw();
+    secondPw.textContent = getRandomPw();
 });
 
-inputPasswordLengthEl.addEventListener('change', () => {
-    let pwLen = Number(inputPasswordLengthEl.value);
-
-    if (pwLen < 6) {
-        inputPasswordLengthEl.value = '6';
-        alert('Password minimum length is 6');
-        PASSWORD_LENGTH = 6;
-    } else if (pwLen > 15) {
-        inputPasswordLengthEl.value = '15';
-        alert('Password minimum length is 15');
-        PASSWORD_LENGTH = 15;
-    } else {
-        PASSWORD_LENGTH = pwLen;
-    }
+inputPwLen.addEventListener('input', () => {
+    pwLen = Number(inputPwLen.value);
+    spanPwLen.textContent = pwLen;
 });
 
-containerPasswordsEl.addEventListener('click', (event) => {
-    if (event.target == firstPasswordEl) {
-        navigator.clipboard.writeText(firstPasswordEl.textContent);
-    } else if (event.target == secondPasswordEl) {
-        navigator.clipboard.writeText(secondPasswordEl.textContent);
+inputSymbols.addEventListener('change', () => {
+    withSymbols = (inputSymbols.checked) ? true : false;
+});
+
+inputNumbers.addEventListener('change', () => {
+    withNumbers = (inputNumbers.checked) ? true : false;
+});
+
+
+containerPw.addEventListener('click', (event) => {
+    if (event.target == firstPw) {
+        navigator.clipboard.writeText(firstPw.textContent);
+    } else if (event.target == secondPw) {
+        navigator.clipboard.writeText(secondPw.textContent);
     }
 });
