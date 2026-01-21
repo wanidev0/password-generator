@@ -12,8 +12,12 @@ body {
     padding: 100px 50px;
     margin: 100px auto;
     width: 550px;
+    height: 550px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
 }
+
 .heading {
     font-family: Karla, sans-serif;
     font-size: 40px;
@@ -76,6 +80,7 @@ hr {
 .passwords {
     display: flex;
     gap: 24px;
+    margin-bottom: 32px;
 }
 
 .pw1, .pw2 {
@@ -102,4 +107,11 @@ hr {
         scale: 1;
         background-color: #2F3E53;
     }
+}
+
+.pw-copy {
+    color: #ffffff;
+    text-align: center;
+    margin: 0px;
+    display: none;
 }
