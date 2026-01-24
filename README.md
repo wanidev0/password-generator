@@ -1,5 +1,5 @@
 # password-generator
-A project for Scrimba which consists of a WebApp to generate passwords randomly
+A project for Scrimba which consists of a Wesite to generate passwords randomly
 ## Requirements:
 - [x] Build it from "scratch"
 - [x] Generate two random passwords when the user clicks the button
