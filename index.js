@@ -16,7 +16,35 @@ spanPwLen.textContent = pwLen;
 let withSymbols = inputSymbols.checked;
 let withNumbers = inputNumbers.checked;
 
-const getRandomPw = () => {
+btnGen.addEventListener('click', () => {
+    firstPw.textContent = getRandomPw();
+    secondPw.textContent = getRandomPw();
+    pwCopy.style.display = 'block'
+});
+
+inputPwLen.addEventListener('input', () => {
+    pwLen = Number(inputPwLen.value);
+    spanPwLen.textContent = pwLen;
+});
+
+inputSymbols.addEventListener('change', () => {
+    withSymbols = (inputSymbols.checked) ? true : false;
+});
+
+inputNumbers.addEventListener('change', () => {
+    withNumbers = (inputNumbers.checked) ? true : false;
+});
+
+
+containerPw.addEventListener('click', (event) => {
+    if (event.target == firstPw) {
+        navigator.clipboard.writeText(firstPw.textContent);
+    } else if (event.target == secondPw) {
+        navigator.clipboard.writeText(secondPw.textContent);
+    }
+});
+
+function getRandomPw() {
     const getRandomNum = () => Math.floor(Math.random() * characters.length);
 
     let randomPw = "";
@@ -64,31 +92,3 @@ const getRandomPw = () => {
 
     return randomPw;
 }
-
-btnGen.addEventListener('click', () => {
-    firstPw.textContent = getRandomPw();
-    secondPw.textContent = getRandomPw();
-    pwCopy.style.display = 'block'
-});
-
-inputPwLen.addEventListener('input', () => {
-    pwLen = Number(inputPwLen.value);
-    spanPwLen.textContent = pwLen;
-});
-
-inputSymbols.addEventListener('change', () => {
-    withSymbols = (inputSymbols.checked) ? true : false;
-});
-
-inputNumbers.addEventListener('change', () => {
-    withNumbers = (inputNumbers.checked) ? true : false;
-});
-
-
-containerPw.addEventListener('click', (event) => {
-    if (event.target == firstPw) {
-        navigator.clipboard.writeText(firstPw.textContent);
-    } else if (event.target == secondPw) {
-        navigator.clipboard.writeText(secondPw.textContent);
-    }
-});
